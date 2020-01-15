@@ -81,9 +81,10 @@ def crawl_pic_and_save(cur_page, pic_text, pic_url):
     """
     try:
         r = requests.get(pic_url, headers=headers)
-        with open('pic/' + str(cur_page) + "/" + pic_text + '.jpg', 'wb') as f:
+        suffix = pic_url.split('.')[-1]
+        with open('pic/' + str(cur_page) + "/" + pic_text + suffix, 'wb') as f:
             f.write(r.content)
-        print('正在下载第{}页的{}照片'.format(cur_page, pic_text))
+        print('正在下载第{}页，照片名为：{}，链接为：{}'.format(cur_page, pic_text, pic_url))
     except:
         pass
     time.sleep(2)  # 停两秒再进行，否则容易被封
